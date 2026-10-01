@@ -1,0 +1,6 @@
+.pio/
+.vscode/
+*.png
+Capture*
+Partie_1
+*.typ
