@@ -40,35 +40,13 @@ void callback(char* t, byte* payload, unsigned int length) {
 }
 
 void reconnect() {
-  int essai = 0;
   while (!mqttClient.connected()) {
-    essai++;
-    // identifiant numérique (comme dans les exemples Wokwi de Beebotte)
-    String clientId = String(random(100000, 999999));
-    bool ok = false;
-    unsigned long t0 = millis();
+    Serial.print("Connexion MQTT...");
+    String clientId = "esp32-led-" + String(random(0xffff), HEX);  // unique
 
-    Serial.print("Tentative ");
-    Serial.print(essai);
-    Serial.print(" : ");
-
-    if (essai % 3 == 1) {
-      Serial.print("token, sans mot de passe... ");
-      ok = mqttClient.connect(clientId.c_str(), token, NULL);
-    } else if (essai % 3 == 2) {
-      Serial.print("token + mot de passe = token... ");
-      ok = mqttClient.connect(clientId.c_str(), token, token);
-    } else {
-      Serial.print("token, mot de passe vide... ");
-      ok = mqttClient.connect(clientId.c_str(), token, "");
-    }
-
-    Serial.print("(");
-    Serial.print(millis() - t0);
-    Serial.println(" ms)");
-
-    if (ok) {
-      Serial.println("Connecté au broker");
+    // Token récent (token_...) utilisé directement, sans mot de passe
+    if (mqttClient.connect(clientId.c_str(), token, NULL)) {
+      Serial.println(" connecté au broker");
       if (mqttClient.subscribe(topic)) {
         Serial.print("Abonné à ");
         Serial.println(topic);
@@ -76,9 +54,9 @@ void reconnect() {
         Serial.println("Abonnement refusé");
       }
     } else {
-      Serial.print("Échec, state = ");
+      Serial.print(" échec, state = ");
       Serial.println(mqttClient.state());
-      delay(2000);
+      delay(5000);
     }
   }
 }

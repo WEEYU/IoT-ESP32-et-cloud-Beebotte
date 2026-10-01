@@ -3,10 +3,11 @@
 #include <WiFiClientSecure.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
-#include "secrets.h"
+// #include "secrets.h"
 
 // ... paramètres WiFi et connexion identiques à la partie 2 ...
 const char* url = "https://api.beebotte.com/v1/data/read/Projet/ledrouge?limit=1";
+const char* token = "token_w3mIhB4cdX7tpK";
 const char* ssid = "Wokwi-GUEST";
 const char* password = "";
 const int PIN_LED = 23;
