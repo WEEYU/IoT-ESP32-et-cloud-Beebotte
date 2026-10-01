@@ -1,0 +1,3 @@
+curl -X POST -H "X-Auth-Token: token_w3mIhB4cdX7tpKxH" -H "Content-Type: application/json" -d '{"data": false}' https://api.beebotte.com/v1/data/write/Projet/ledrouge
+
+curl -H "X-Auth-Token: token_w3mIhB4cdX7tpKxH" "https://api.beebotte.com/v1/data/read/Projet/ledrouge?limit=1"s

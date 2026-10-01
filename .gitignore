@@ -1,6 +1,8 @@
+cd ~/Doc/Master/"Sécurité IoT"
+cat >> .gitignore << 'EOF'
 .pio/
 .vscode/
+.DS_Store
+secrets.h
 *.png
-Capture*
-Partie_1
-*.typ
+EOF
